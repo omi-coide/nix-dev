@@ -17,8 +17,7 @@
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-      ylynur = inputs.ylynur;
-      rustD = import ./rust.nix { inherit inputs system; };
+      rust = import ./rust.nix { inherit inputs system; };
     };
 }
 
