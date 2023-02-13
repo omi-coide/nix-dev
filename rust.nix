@@ -4,6 +4,8 @@ let
   pkgs = inputs.nixpkgs.legacyPackages.${system};
 in
   mkShell {
-    buildInputs = with pkgs;[ rustc rust-analyzer pkg-config ];
+    packages = with pkgs;[ rustc rust-analyzer pkg-config cargo ];
+    shellHook = "exec zsh";
+    RUST_BACKTRACE = 1 ;
   }
 
