@@ -19,6 +19,7 @@
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       rust = import ./rust.nix { inherit inputs system; };
       ns3 = import ./ns3.nix { inherit inputs system; NetAnim = ylynur.packages.${system}.NetAnim; };
+      tex = import ./tex.nix { inherit inputs system; };
     };
 }
 

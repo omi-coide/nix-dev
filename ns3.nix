@@ -1,4 +1,4 @@
-{ inputs, system,  ... }:
+{ inputs, system, ... }:
 let
   mkShell = inputs.nixpkgs.legacyPackages.${system}.mkShell;
   pkgs = inputs.nixpkgs.legacyPackages.${system};
