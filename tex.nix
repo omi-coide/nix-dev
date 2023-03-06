@@ -2,7 +2,6 @@
 let
   mkShell = inputs.nixpkgs.legacyPackages.${system}.mkShell;
   pkgs = inputs.nixpkgs.legacyPackages.${system};
-  nur = inputs.ylynur.packages.${system};
 in
 let
   tex = [
@@ -44,6 +43,7 @@ let
         zapfding zhmetrics zhmetrics-uptex zhnumber;
     })
     pkgs.xdg-utils
+    # 除此之外还需要Windows 字体
   ];
 in
 mkShell {
