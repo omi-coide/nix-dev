@@ -30,28 +30,40 @@
 
           path=$2
           str=$1
+          flag=0
           devShells="${builtins.toString (builtins.attrNames devShells) }"
           if [ $# -ne 2 ]; then
+            flag=1
+          fi
+          for sh in $devShells
+          do
+            if [ $sh -ne $str ]; then
+              flag=1
+            fi
+          done
+          if [ $flag -eq 1 ]; then
             echo "Usage: activate <devShell> <path> "
             echo "available devShells: $devShells"
             exit 1
           fi
 
-          if [ -f "$path/.envrc" ]; then
-            echo "Error: The file $path/.envrc already exists."
-            exit 1
-          fi
-
           if [ -d "$path" ]; then
+
+            if [ -f "$path/.envrc" ]; then
+              echo "Error: The file $path/.envrc already exists."
+              exit 1
+            fi
             echo "Error: The file $path already exists."
-            exit 1
+            touch $path/.envrc
+            echo "use flake github:omi-coide/nix-dev#$str" >> "$path/.envrc"
+            echo "The file $path/.envrc has been created successfully!"
+          else
+            mkdir -p $path
+            touch $path/.envrc
+            echo "use flake github:omi-coide/nix-dev#$str" >> "$path/.envrc"
+            echo "The file $path/.envrc has been created successfully!"
           fi
-          mkdir -p $path
-          touch $path/.envrc
-          echo "use flake github:omi-coide/nix-dev#$str" >> "$path/.envrc"
-
-          echo "The file $path/.envrc has been created successfully!"
-
+          exit 0
         '';
       in
       {
