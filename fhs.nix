@@ -6,15 +6,15 @@ in
   name = "simple-x11-env";
   targetPkgs = pkgs: (with pkgs;
     [ udev
+      linuxPackages.kernel.dev
+      linuxPackages.kernel
       alsa-lib
-    ]) ++ (with pkgs.xorg;
-    [ libX11
-      libXcursor
-      libXrandr
     ]);
   multiPkgs = pkgs: (with pkgs;
     [ udev
       alsa-lib
+      linuxPackages.kernel.dev
+      linuxPackages.kernel
     ]);
   runScript = "bash";
 }).env
