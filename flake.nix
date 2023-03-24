@@ -17,12 +17,13 @@
     in
     (
       let
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        pkgs = nixpkgs.legacyPackages.${system};
         devShells = {
           rust = import ./rust.nix { inherit inputs system; };
           ns3 = import ./ns3.nix { inherit inputs system; NetAnim = ylynur.packages.${system}.NetAnim; };
           tex = import ./tex.nix { inherit inputs system; };
           vue = import ./vue.nix { inherit inputs system; };
+          fhs = import ./fhs.nix { inherit inputs system; };
         };
         initDevShell = pkgs.writeScriptBin "activate" ''
           #!/usr/bin/env bash
@@ -40,6 +41,12 @@
             echo "Error: The file $path/.envrc already exists."
             exit 1
           fi
+
+          if [ -d "$path" ]; then
+            echo "Error: The file $path already exists."
+            exit 1
+          fi
+          mkdir -p $path
           touch $path/.envrc
           echo "use flake github:omi-coide/nix-dev#$str" >> "$path/.envrc"
 
