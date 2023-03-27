@@ -56,11 +56,13 @@
             echo "Error: The file $path already exists."
             touch $path/.envrc
             echo "use flake github:omi-coide/nix-dev#$str" >> "$path/.envrc"
+            direnv allow
             echo "The file $path/.envrc has been created successfully!"
           else
             mkdir -p $path
             touch $path/.envrc
             echo "use flake github:omi-coide/nix-dev#$str" >> "$path/.envrc"
+            direnv allow
             echo "The file $path/.envrc has been created successfully!"
           fi
           exit 0
