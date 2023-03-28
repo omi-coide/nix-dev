@@ -12,5 +12,3 @@ mkShell {
   LIBRARY_PATH = "${pkgs.ns-3}/lib"; # buildtime search path
   PKG_CONFIG_PATH = "${pkgs.ns-3}/lib/pkgconfig"; # pkgconfig search path
 }
-
-

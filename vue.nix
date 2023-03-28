@@ -6,7 +6,6 @@ in
 let
   vue = with pkgs;[
     nodejs
-    # 除此之外还需要Windows 字体
   ];
 in
 mkShell {

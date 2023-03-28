@@ -8,13 +8,8 @@ in
     [ udev
       linuxPackages.kernel.dev
       linuxPackages.kernel
-      alsa-lib
-    ]);
-  multiPkgs = pkgs: (with pkgs;
-    [ udev
-      alsa-lib
-      linuxPackages.kernel.dev
-      linuxPackages.kernel
+      linuxPackages.kernel.moduleBuildDependencies
+      bc
     ]);
   runScript = "bash";
 }).env
