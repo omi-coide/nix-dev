@@ -20,7 +20,11 @@
         pkgs = nixpkgs.legacyPackages.${system};
         devShells = {
           rust = import ./rust.nix { inherit inputs system; };
-          ns3 = import ./ns3.nix { inherit inputs system; NetAnim = ylynur.packages.${system}.NetAnim; };
+          ns3 = import ./ns3.nix {
+            inherit inputs system;
+            ns3 = pkgs.ns3.override { withExamples = true; modules = [ "all_modules" ]; };
+            NetAnim = ylynur.packages.${system}.NetAnim;
+          };
           tex = import ./tex.nix { inherit inputs system; };
           vue = import ./vue.nix { inherit inputs system; };
           fhs = import ./fhs.nix { inherit inputs system; };

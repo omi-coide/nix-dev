@@ -1,11 +1,10 @@
-{ inputs, system, ... }:
+{ inputs, system, ns3, NetAnim, ... }:
 let
   mkShell = inputs.nixpkgs.legacyPackages.${system}.mkShell;
   pkgs = inputs.nixpkgs.legacyPackages.${system};
-  nur = inputs.ylynur.packages.${system};
 in
 mkShell {
-  packages = with pkgs;[ ns-3 pkg-config nur.NetAnim ];
+  packages = with pkgs;[ ns-3 pkg-config NetAnim ];
   C_INCLUDE_PATH = "${pkgs.ns-3}/include/ns3.35";
   CPLUS_INCLUDE_PATH = "${pkgs.ns-3}/include/ns3.35";
   LD_LIBRARY_PATH = "${pkgs.ns-3}/lib"; # runtime search path
