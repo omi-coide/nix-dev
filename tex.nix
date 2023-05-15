@@ -43,6 +43,8 @@ let
         zapfding zhmetrics zhmetrics-uptex zhnumber;
     })
     pkgs.xdg-utils
+    pkgs.ghostscript
+    # fix xdvitopdf image conversion failed for a.eps
     # 除此之外还需要Windows 字体
   ];
 in
