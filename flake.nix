@@ -2,7 +2,7 @@
   description = "nixos-config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.05";
     flake-utils.url = "github:numtide/flake-utils";
     ylynur = {
       url = "github:omi-coide/my-nur-packages";
@@ -17,7 +17,7 @@
     in
     (
       let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; config.cudaSupport = true; };
         devShells = {
           rust = import ./rust.nix { inherit inputs system; };
           ns3 = import ./ns3.nix {
@@ -28,6 +28,8 @@
           tex = import ./tex.nix { inherit inputs system; };
           vue = import ./vue.nix { inherit inputs system; };
           fhs = import ./fhs.nix { inherit inputs system; };
+          mpi = import ./mpi.nix { inherit inputs system; };
+          cuda = import ./cuda.nix { inherit inputs system; };
         };
         initDevShell = pkgs.writeScriptBin "activate" ''
           #!/usr/bin/env bash
