@@ -1,7 +1,4 @@
-{ inputs, system }:
-let
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-in
+{ pkgs, system }:
 (pkgs.buildFHSUserEnv {
   name = "simple-x11-env";
   targetPkgs = pkgs: (with pkgs;

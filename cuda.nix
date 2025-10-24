@@ -1,9 +1,5 @@
-{ inputs, system, ... }:
-let
-  mkShell = inputs.nixpkgs.legacyPackages.${system}.mkShell;
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-in
-mkShell {
+{ pkgs, system, ... }:
+pkgs.mkShell {
   name = "cuda-env-shell";
   buildInputs = with pkgs; [
     git

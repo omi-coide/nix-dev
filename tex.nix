@@ -1,8 +1,4 @@
-{ inputs, system, ... }:
-let
-  mkShell = inputs.nixpkgs.legacyPackages.${system}.mkShell;
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-in
+{ pkgs, system, ... }:
 let
   tex = [
     (pkgs.texlive.combine {
@@ -48,7 +44,7 @@ let
     # 除此之外还需要Windows 字体
   ];
 in
-mkShell {
+pkgs.mkShell {
   packages = with pkgs;[ gnumake ] ++ tex;
 }
 

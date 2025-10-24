@@ -1,9 +1,5 @@
-{ inputs, system, ns3, NetAnim, ... }:
-let
-  mkShell = inputs.nixpkgs.legacyPackages.${system}.mkShell;
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-in
-mkShell {
+{ pkgs, system, ns3, NetAnim, ... }:
+pkgs.mkShell {
   packages = with pkgs;[ ns-3 pkg-config NetAnim ];
   C_INCLUDE_PATH = "${pkgs.ns-3}/include/ns3.35";
   CPLUS_INCLUDE_PATH = "${pkgs.ns-3}/include/ns3.35";

@@ -1,14 +1,10 @@
-{ inputs, system, ... }:
-let
-  mkShell = inputs.nixpkgs.legacyPackages.${system}.mkShell;
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-in
+{ pkgs, system, ... }:
 let
   vue = with pkgs;[
     nodejs
   ];
 in
-mkShell {
+pkgs.mkShell {
   packages = vue;
 }
 

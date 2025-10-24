@@ -25,11 +25,11 @@
             ns3 = pkgs.ns3.override { withExamples = true; modules = [ "all_modules" ]; };
             NetAnim = ylynur.packages.${system}.NetAnim;
           };
-          tex = import ./tex.nix { inherit inputs system; };
-          vue = import ./vue.nix { inherit inputs system; };
-          fhs = import ./fhs.nix { inherit inputs system; };
-          mpi = import ./mpi.nix { inherit inputs system; };
-          cuda = import ./cuda.nix { inherit inputs system; };
+          tex = import ./tex.nix { inherit pkgs system; };
+          vue = import ./vue.nix { inherit pkgs system; };
+          fhs = import ./fhs.nix { inherit pkgs system; };
+          mpi = import ./mpi.nix { inherit pkgs system; };
+          cuda = import ./cuda.nix { inherit pkgs system; };
         };
         initDevShell = pkgs.writeScriptBin "activate" ''
           #!/usr/bin/env bash

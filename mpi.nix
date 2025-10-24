@@ -1,9 +1,5 @@
-{ inputs, system, ... }:
-let
-  mkShell = inputs.nixpkgs.legacyPackages.${system}.mkShell;
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-in
-mkShell {
+{ pkgs, system, ... }:
+pkgs.mkShell {
   packages = with pkgs;[ mpi ];
 
   # we dont need the following since mpiexec and mpicc et cetera will handle those.
